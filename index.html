@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: rgb(239, 219, 132);
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .main {
+            width: 80%;
+            height: max-content;
+            margin-top: 1em;
+            margin-inline: auto;
+            -webkit-box-shadow: 0px 0px 3px 1px gray;
+            box-shadow: 0px 0px 3px 1px gray;
+            margin-bottom: 0.5em;
+        }
+
+        .heading {
+            width: 100%;
+            height: 9em;
+            background-color: #9ACD32;
+        }
+
+        .logo {
+            float: left;
+            margin-left: 2em;
+        }
+
+        .logo img {
+            width: 27%;
+        }
+
+        .text {
+            float: right;
+            margin-right: 2em;
+        }
+
+        .text h1 {
+            margin: 1em 2em 0em 0em;
+            padding: 0;
+            font-size: 28pt;
+            font-weight: 600;
+        }
+
+        .text p {
+            margin: 0em 4em 0em 0em;
+            font-size: 14pt;
+            float: right;
+        }
+
+        .midpart {
+            width: 100%;
+            height: max-content;
+            background-color: rgb(241, 228, 212);
+            border: 1px solid transparent;
+        }
+
+        .navbar {
+            width: 95%;
+            height: 3em;
+            margin-top: 1em;
+            background-color: #F5F5DC;
+            margin-inline: auto;
+            -webkit-box-shadow: -1px -2px 7px 0px #000000;
+            box-shadow: -1px -2px 7px 0px #000000;
+        }
+
+        .navbar ul li {
+            position: relative;
+            list-style: none;
+            display: inline-block;
+            padding: 0.2em 1em;
+
+
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            padding: 0.2em 2em;
+            color: black;
+            border-radius: 0.5em;
+            display: block;
+            line-height: 2em;
+            font-size: 13pt;
+        }
+
+        .navbar a:hover {
+            color: rgb(223, 93, 184);
+            transform: 500ms ease-in-out;
+        }
+
+        .navbar ul ul {
+            position: absolute;
+            top: 3em;
+            display: none;
+        }
+
+        .navbar ul li:hover>ul {
+            display: block;
+        }
+
+        .navbar ul ul li {
+            width: 11.5em;
+            float: none;
+            display: list-item;
+            position: relative;
+            background-color: #F5F5DC;
+        }
+
+        .navbar ul ul li:hover,
+        .navbar ul ul ul li:hover {
+            background-color: rgb(178, 186, 37);
+        }
+
+        .navbar ul ul ul li {
+            position: relative;
+            top: -2.8em;
+            left: 12.7em;
+        }
+
+        .active {
+            background-color: #80b318;
+        }
+
+        .start {
+            border: 1.5px solid white;
+            box-shadow: 0px 0px 15px -2px #000000;
+        }
+
+        .start:hover {
+            background-color: rgb(239, 219, 132);
+            transition: 500ms ease-in-out;
+        }
+
+        .left-1,
+        .left-2 {
+            width: 20%;
+            height: 300px;
+            border: 1px solid transparent;
+            background-color: rgb(235, 225, 200);
+            margin-left: 0.5em;
+            margin-top: 2em;
+
+        }
+
+        .gallary {
+            width: 75%;
+            float: right;
+            margin: 0;
+            padding-left: 1em;
+            margin-top: -39.6em;
+            border-left: 1px solid gray;
+            background-color: rgb(235, 225, 200);
+        }
+
+        .gallary h3 {
+            font-size: 22pt;
+            margin-top: 0.8em;
+        }
+
+        .gallary p {
+            line-height: 1.5em;
+        }
+
+        .buttom {
+            display: flex;
+            width: 98%;
+            padding-left: 1em;
+            gap: 5%;
+        }
+
+
+        svg {
+            width: 20px;
+            height: 20px;
+            padding-right: 0.2em;
+        }
+
+        .menuhead {
+            width: 100%;
+            height: 50px;
+            background-color: rgb(178, 186, 37);
+            text-align: center;
+            padding-top: 1em;
+
+        }
+
+        .menuhead h2 {
+            margin: 0;
+            padding: 0;
+        }
+
+        .menuhead-para,
+        .menuhead-para-1 {
+            padding: 1em;
+        }
+
+        .menuhead-para-1 {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        .link li {
+            list-style-type: square;
+            margin: 0.5em;
+        }
+
+        .link a {
+            color: gray;
+            padding-left: 0.3em;
+        }
+
+        .link a:hover {
+            color: hotpink;
+        }
+
+        .link ul {
+            margin-top: 1em;
+            margin-left: 0.8em;
+        }
+
+        .modal-1 {
+            display: none;
+            /*hidden by default */
+            position: fixed;
+            /* stay in place*/
+            z-index: 1;
+            /* sit on top*/
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* full width*/
+            height: 100%;
+            /* full height*/
+            overflow: auto;
+            /*enable scroll if needed*/
+            background-color: rgb(0, 0, 0);
+            /*fallback color*/
+            background-color: rgba(0, 0, 0, 0.4);
+            /*black w/ opacity*/
+        }
+
+        /* modal content/box*/
+        .modal-content-1 {
+            background-color: #fefefe;
+            margin: 15% auto;
+            /* 15% from the top and centered*/
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            /* could be more or less, depending on screen size*/
+        }
+
+        /* the close button*/
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 0.5em 0.6em;
+            background-color: #80b318;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 0.9em;
+        }
+
+        #more {
+            display: none;
+        }
+
+        footer {
+            width: 100%;
+            height: 3em;
+            background-color: #9ACD32;
+            margin-bottom: 0.5em;
+        }
+
+        footer p {
+            font-size: 14pt;
+            text-align: center;
+            padding-top: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <header class="heading">
+            <div class="logo">
+                <img src="/image/Logo-Triangel.PNG" alt="">
+            </div>
+            <div class="text">
+                <h1>Triangle Hunt</h1>
+                <p>Anywhere any time</p>
+            </div>
+        </header>
+        <section class="midpart">
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a>
+                        <ul>
+                            <li><a href="/Page-1/sample_web.html">New Page</a></li>
+                            <li><a href="/Page-2/page_2.html">New Page 2</a></li>
+                            <li><a href="/Page-3/page_3.html">New Page 3</a></li>
+                            <li><a href="/Page-4/page_4.html">New Page 4</a>
+                                <ul>
+                                    <li><a href="/Page-4/page_4.html">Home</a></li>
+                                    <li><a href="/Page-4/about_us.html">About Us</a></li>
+                                    <li><a href="/Page-4/courses.html">Courses</a>
+                                        <ul>
+                                            <li><a href="#">Course 1</a></li>
+                                            <li><a href="#">Course 2</a></li>
+                                            <li><a href="#">Course 3</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/Page-4/resources.html">Resources</a></li>
+                                    <li><a href="/Page-4/Contact_us.html">Contact Us</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Page-5/page_5.html">New Page 5</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a class="start" href="register.html">Get Started</a></li>
+                </ul>
+            </nav>
+            <aside class="left-1">
+                <div class="menuhead">
+                    <h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                            <path
+                                d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z" />
+                        </svg>
+                        Main Menu
+                    </h2>
+                </div>
+                <div class="link">
+                    <ul>
+                        <li id="main-Item-1"><a href="#" onclick="modelItem1()">Menu Item 1</a></li>
+                        <li id="main-Item-2"><a href="#" onclick="modelItem2()">Menu Item 2</a></li>
+                        <li id="main-Item-3"><a href="#" onclick="modelItem3()">Menu Item 3</a></li>
+                        <li id="main-Item-4"><a href="#" onclick="modelItem4()">Menu Item 4</a></li>
+                        <li id="main-Item-5"><a href="#" onclick="modelItem5()">Menu Item 5</a></li>
+                        <li id="main-Item-6"><a href="#" onclick="modelItem6()">Menu Item 6</a></li>
+                        <li id="main-Item-7"><a href="#" onclick="modelItem7()">Menu Item 7</a></li>
+                        <li id="main-Item-8"><a href="#" onclick="modelItem8()">Menu Item 8</a></li>
+                    </ul>
+                    <div id="main-Item-model-1" class="modal-1">
+                        <!-- Modal content -->
+                        <div class="modal-content-1">
+                            <span class="close">&times;</span>
+                            <h3>Main Item 1</h3>
+                            <p>Some text in the Modal..</p>
+                            <p>Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Aliquam
+                                dolor
+                                esse atque, aperiam delectus tenetur
+                                veniam
+                                suscipit possimus inventore,
+                                doloribus blanditiis
+                                consequuntur, neque consequatur!
+                                Eaque facilis
+                                placeat molestias quis corporis.</p>
+                        </div>
+                    </div>
+                    <div id="main-Item-model-2" class="modal-1">
+                        <!-- Modal content -->
+                        <div class="modal-content-1">
+                            <span class="close">&times;</span>
+                            <h3>Main Item 2</h3>
+                            <p>Some text in the Modal..</p>
+                            <p>Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Aliquam
+                                dolor
+                                esse atque, aperiam delectus tenetur
+                                veniam
+                                suscipit possimus inventore,
+                                doloribus blanditiis
+                                consequuntur, neque consequatur!
+                                Eaque facilis
+                                placeat molestias quis corporis.</p>
+                        </div>
+                    </div>
+                    <div id="main-Item-model-3" class="modal-1">
+                        <!-- Modal content -->
+                        <div class="modal-content-1">
+                            <span class="close">&times;</span>
+                            <h3>Main Item 3</h3>
+                            <p>Some text in the Modal..</p>
+                            <p>Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Aliquam
+                                dolor
+                                esse atque, aperiam delectus tenetur
+                                veniam
+                                suscipit possimus inventore,
+                                doloribus blanditiis
+                                consequuntur, neque consequatur!
+                                Eaque facilis
+                                placeat molestias quis corporis.</p>
+                        </div>
+                    </div>
+                    <div id="main-Item-model-4" class="modal-1">
+                        <!-- Modal content -->
+                        <div class="modal-content-1">
+                            <span class="close">&times;</span>
+                            <h3>Main Item 4</h3>
+                            <p>Some text in the Modal..</p>
+                            <p>Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Aliquam
+                                dolor
+                                esse atque, aperiam delectus tenetur
+                                veniam
+                                suscipit possimus inventore,
+                                doloribus blanditiis
+                                consequuntur, neque consequatur!
+                                Eaque facilis
+                                placeat molestias quis corporis.</p>
+                        </div>
+                    </div>
+                    <div id="main-Item-model-5" class="modal-1">
+                        <!-- Modal content -->
+                        <div class="modal-content-1">
+                            <span class="close">&times;</span>
+                            <h3>Main Item 5</h3>
+                            <p>Some text in the Modal..</p>
+                            <p>Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Aliquam
+                                dolor
+                                esse atque, aperiam delectus tenetur
+                                veniam
+                                suscipit possimus inventore,
+                                doloribus blanditiis
+                                consequuntur, neque consequatur!
+                                Eaque facilis
+                                placeat molestias quis corporis.</p>
+                        </div>
+                    </div>
+                    <div id="main-Item-model-6" class="modal-1">
+                        <!-- Modal content -->
+                        <div class="modal-content-1">
+                            <span class="close">&times;</span>
+                            <h3>Main Item 6</h3>
+                            <p>Some text in the Modal..</p>
+                            <p>Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Aliquam
+                                dolor
+                                esse atque, aperiam delectus tenetur
+                                veniam
+                                suscipit possimus inventore,
+                                doloribus blanditiis
+                                consequuntur, neque consequatur!
+                                Eaque facilis
+                                placeat molestias quis corporis.</p>
+                        </div>
+                    </div>
+                    <div id="main-Item-model-7" class="modal-1">
+                        <!-- Modal content -->
+                        <div class="modal-content-1">
+                            <span class="close">&times;</span>
+                            <h3>Main Item 7</h3>
+                            <p>Some text in the Modal..</p>
+                            <p>Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Aliquam
+                                dolor
+                                esse atque, aperiam delectus tenetur
+                                veniam
+                                suscipit possimus inventore,
+                                doloribus blanditiis
+                                consequuntur, neque consequatur!
+                                Eaque facilis
+                                placeat molestias quis corporis.</p>
+                        </div>
+                    </div>
+                    <div id="main-Item-model-8" class="modal-1">
+                        <!-- Modal content -->
+                        <div class="modal-content-1">
+                            <span class="close">&times;</span>
+                            <h3>Main Item 8</h3>
+                            <p>Some text in the Modal..</p>
+                            <p>Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Aliquam
+                                dolor
+                                esse atque, aperiam delectus tenetur
+                                veniam
+                                suscipit possimus inventore,
+                                doloribus blanditiis
+                                consequuntur, neque consequatur!
+                                Eaque facilis
+                                placeat molestias quis corporis.</p>
+                        </div>
+                    </div>
+                
+                </div>
+            </aside>
+            <aside class="left-2">
+                <div class="menuhead">
+                    <h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                            <path
+                                d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z" />
+                        </svg>
+                        Block
+                    </h2>
+                </div>
+                <p class="menuhead-para">Enter Block content here...</p>
+                <p class="menuhead-para-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo veniam ipsum
+                    dolorum, placeat dolorem
+                    animi esse hic excepturi asperiores molestias.</p>
+            </aside>
+            <div class="gallary">
+                <h3>Gallery</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum rerum nemo, temporibus magni minus
+                    perferendis quis est quaerat? Architecto asperiores error fugiat veniam voluptatum itaque fugit, ad
+                    sapiente eligendi nobis quas atque voluptas delectus, hic, ratione dicta porro? Nesciunt numquam
+                    architecto delectus quidem sed, accusantium, doloribus accusamus sint velit nostrum esse! Adipisci
+                    praesentium, delectus sunt distinctio officiis quibusdam, ullam magnam laudantium cumque maxime
+                    cupiditate excepturi error vel! Voluptates, a. Beatae quia eos eligendi ex corporis esse
+                    perferendis, repellat quis expedita assumenda qui id voluptas aliquam veniam voluptatibus accusamus
+                    blanditiis aperiam! Consectetur voluptas, neque officia esse animi ex voluptates eius doloribus
+                    incidunt ratione necessitatibus eum exercitationem vero excepturi totam asperiores quae explicabo
+                    ab in? Ducimus cumque asperiores nobis consequatur.</p>
+                <div class="buttom">
+                    <div class="sub">
+                        <h3>Subscription</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, neque, in officia
+                            consequatur
+                            veritatis sit facere obcaecati doloribus corporis saepe voluptatem odit sunt quo qui
+                            officiis
+                            placeat culpa eius? Eligendi nesciunt quo recusandae doloremque facilis labore et qui, eos
+                            aliquid
+                            architecto quas officiis dolore soluta neque nobis. Inventore, omnis pariatur.
+                            <span id="dots">...</span>
+                            <span id="more">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus provident
+                                eveniet
+                                veritatis architecto nostrum sunt magni, recusandae odio fugiat dolores.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus provident eveniet
+                                veritatis architecto nostrum sunt magni.</span>
+                        </p>
+                        <button onclick="readMore()" id="read-more">Read More</button>
+                    </div>
+                    <hr>
+                    <div class="other">
+                        <h3>Other Services</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam fuga mollitia quae dolorum,
+                            modi
+                            impedit nesciunt ut culpa necessitatibus architecto ipsa nam quia deserunt sed laborum
+                            exercitationem temporibus esse et! Repudiandae nemo praesentium excepturi assumenda ullam
+                            reiciendis
+                            aperiam doloremque totam asperiores optio omnis suscipit vitae, voluptatem eos ab, porro a?
+                            <span id="dots1">...</span>
+                            <span id="more1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat iure, et
+                                id ullam magni eum! Corporis consequuntur non dolores voluptates eos pariatur? Eveniet,
+                                dolor eaque fuga dignissimos rerum adipisci magni.</span>
+                        </p>
+                        <button onclick="showMore()" id="read-more1">Read More</button>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <p>Copyright @ 2014.</p>
+            </footer>
+
+    </div>
+    <script>
+        function readMore() {
+            var moreText = document.getElementById("more");
+            var dots = document.getElementById("dots");
+            var btnText = document.getElementById("read-more");
+
+            if (dots.style.display === "none") {
+                dots.style.display = "inline";
+                btnText.innerHTML = "Read more";
+                moreText.style.display = "none";
+            } else {
+                dots.style.display = "none";
+                btnText.innerHTML = "Read less";
+                moreText.style.display = "inline";
+            }
+
+        }
+        function showMore() {
+            var moreText = document.getElementById("more1");
+            var dots = document.getElementById("dots1");
+            var btnText = document.getElementById("read-more1");
+
+            if (dots.style.display === "none") {
+                dots.style.display = "inline";
+                btnText.innerHTML = "Read more";
+                moreText.style.display = "none";
+            } else {
+                dots.style.display = "none";
+                btnText.innerHTML = "Read less";
+                moreText.style.display = "inline";
+            }
+
+        }
+        function modelItem1() {
+            // Get the modal
+            var modal_1 = document.getElementById("main-Item-model-1");
+
+            // Get the button that opens the modal
+            var btn_1 = document.getElementById("main-Item-1");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on the button, open the modal
+            btn_1.onclick = function () {
+                modal_1.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal_1.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal_1) {
+                    modal_1.style.display = "none";
+                }
+            }
+        }
+        function modelItem2() {
+            var modal_2 = document.getElementById("main-Item-model-2");
+            var btn_2 = document.getElementById("main-Item-2");
+            var span = document.getElementsByClassName("close")[1];
+            btn_2.onclick = function () {
+                modal_2.style.display = "block";
+            }
+            span.onclick = function () {
+                modal_2.style.display = "none";
+            }
+            window.onclick = function (event) {
+                if (event.target == modal_2) {
+                    modal_2.style.display = "none";
+                }
+            }
+        }
+        function modelItem3() {
+            var modal_3 = document.getElementById("main-Item-model-3");
+            var btn_3 = document.getElementById("main-Item-3");
+            var span = document.getElementsByClassName("close")[2];
+            btn_3.onclick = function () {
+                modal_3.style.display = "block";
+            }
+            span.onclick = function () {
+                modal_3.style.display = "none";
+            }
+            window.onclick = function (event) {
+                if (event.target == modal_3) {
+                    modal_3.style.display = "none";
+                }
+            }
+        }
+        function modelItem4() {
+            var modal_4 = document.getElementById("main-Item-model-4");
+            var btn_4 = document.getElementById("main-Item-4");
+            var span = document.getElementsByClassName("close")[3];
+            btn_4.onclick = function () {
+                modal_4.style.display = "block";
+            }
+            span.onclick = function () {
+                modal_4.style.display = "none";
+            }
+            window.onclick = function (event) {
+                if (event.target == modal_4) {
+                    modal_4.style.display = "none";
+                }
+            }
+        }
+        function modelItem5() {
+            var modal_5 = document.getElementById("main-Item-model-5");
+            var btn_5 = document.getElementById("main-Item-5");
+            var span = document.getElementsByClassName("close")[4];
+            btn_5.onclick = function () {
+                modal_5.style.display = "block";
+            }
+            span.onclick = function () {
+                modal_5.style.display = "none";
+            }
+            window.onclick = function (event) {
+                if (event.target == modal_5) {
+                    modal_5.style.display = "none";
+                }
+            }
+        }
+        function modelItem6() {
+            var modal_6 = document.getElementById("main-Item-model-6");
+            var btn_6 = document.getElementById("main-Item-6");
+            var span = document.getElementsByClassName("close")[5];
+            btn_6.onclick = function () {
+                modal_6.style.display = "block";
+            }
+            span.onclick = function () {
+                modal_6.style.display = "none";
+            }
+            window.onclick = function (event) {
+                if (event.target == modal_6) {
+                    modal_6.style.display = "none";
+                }
+            }
+        }
+        function modelItem7() {
+            var modal_7 = document.getElementById("main-Item-model-7");
+            var btn_7 = document.getElementById("main-Item-7");
+            var span = document.getElementsByClassName("close")[6];
+            btn_7.onclick = function () {
+                modal_7.style.display = "block";
+            }
+            span.onclick = function () {
+                modal_7.style.display = "none";
+            }
+            window.onclick = function (event) {
+                if (event.target == modal_7) {
+                    modal_7.style.display = "none";
+                }
+            }
+        }
+        function modelItem8() {
+            var modal_8 = document.getElementById("main-Item-model-8");
+            var btn_8 = document.getElementById("main-Item-8");
+            var span = document.getElementsByClassName("close")[7];
+            btn_8.onclick = function () {
+                modal_8.style.display = "block";
+            }
+            span.onclick = function () {
+                modal_8.style.display = "none";
+            }
+            window.onclick = function (event) {
+                if (event.target == modal_8) {
+                    modal_8.style.display = "none";
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
